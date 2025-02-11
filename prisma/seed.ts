@@ -1,12 +1,16 @@
-import "@/lib/envConfig"
+import "@/lib/envConfig";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const userId = "user_2sdrInjp9MIarkQMVJBtw16tAlf";
+const userId: string = process.env.NEXT_PUBLIC_SEEDED_USER_ID || "";
 
 // Vérifier qu'on est bien en mode développement
 if (process.env.NODE_ENV !== "development") {
   console.error("❌ ERROR: You are not in development mode! Aborting seed...");
+  process.exit(1);
+}
+if (!userId) {
+  console.error(`❌ ERROR: userId is not valide! Aborting seed...`);
   process.exit(1);
 }
 
