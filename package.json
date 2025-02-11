@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.30.0",
