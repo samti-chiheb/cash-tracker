@@ -109,17 +109,18 @@ function CreateTransactionDialog({ trigger, type }: Props) {
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            Créer une nouvelle{" "}
-            <span
+          <DialogTitle className="relative mx-auto">
+            {React.isValidElement(trigger)
+              ? trigger.props.children
+              : type === "income"
+              ? "Saisissez un revenu"
+              : "Indiquez une dépense"}
+            <div
               className={cn(
-                "m-1",
-                type === "income" ? "text-emerald-500" : "text-red-500"
+                "w-full h-[8px] absolute bottom-[-4px] z-[-2] opacity-50",
+                type === "income" ? "bg-emerald-500" : "bg-red-500"
               )}
-            >
-              {type === "income" ? "entrée de revenu" : "dépense"}
-            </span>{" "}
-            transaction
+            ></div>
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -146,7 +147,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                 <FormItem>
                   <FormLabel>Montant</FormLabel>
                   <FormControl>
-                    <Input defaultValue={0} type="number" {...field} />
+                    <Input defaultValue={0} type="number" min={0} {...field} />
                   </FormControl>
                   <FormDescription>
                     Montant de la transaction (obligatoire)
@@ -169,7 +170,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                       />
                     </FormControl>
                     <FormDescription>
-                      Sélectionnez une catégorie pour cette transaction
+                      Une catégorie pour cette transaction
                     </FormDescription>
                   </FormItem>
                 )}
@@ -213,7 +214,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-                      Sélectionnez une date pour cette transaction
+                      Une date pour cette transaction
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

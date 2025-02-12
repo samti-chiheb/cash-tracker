@@ -182,7 +182,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
                           )}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-full">
+                      <PopoverContent className="w-full translate-y-52 md:translate-y-0">
                         <Picker
                           data={data}
                           theme={theme.resolvedTheme}
