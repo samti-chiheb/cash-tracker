@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Cash tracker",
   description:
     "Cash Tracker est une application intuitive de suivi des finances personnelles qui aide les utilisateurs à gérer leur budget efficacement, suivre leurs dépenses et revenus, et optimiser leur situation financière.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
